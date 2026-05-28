@@ -19,7 +19,44 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
 Developed by: Renita Ireen G
 RegisterNumber: 212225220083 
-*/
+*/import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+
+df = pd.read_csv("/content/sample_data/Salary.csv")
+
+X = df[['Level']]
+
+y = df['Salary']
+
+model = DecisionTreeRegressor(random_state=42)
+
+model.fit(X, y)
+
+prediction = model.predict([[6.5]])
+
+print("Predicted Salary:", prediction[0])
+
+plt.scatter(df['Level'], df['Salary'])
+
+plt.plot(df['Level'], model.predict(X))
+
+plt.xlabel("Position Level")
+plt.ylabel("Salary")
+plt.title("Decision Tree Regression")
+
+plt.show()
+
+plt.figure(figsize=(12,8))
+
+plot_tree(model,
+          feature_names=['Level'],
+          filled=True)
+
+plt.title("Decision Tree Regressor Tree")
+
+plt.show()
+
 ```
 
 ## Output:
